@@ -1,0 +1,38 @@
+public class ArrayRotation {
+    public static void rotateArray(int[] arr, int rotationCount) {
+        int n = arr.length;
+        
+        // Adjust rotation count if it's greater than array length
+        rotationCount = rotationCount % n;
+        
+        // Reverse the entire array
+        reverseArray(arr, 0, n - 1);
+        
+        // Reverse the first rotationCount elements
+        reverseArray(arr, 0, rotationCount - 1);
+        
+        // Reverse the remaining elements
+        reverseArray(arr, rotationCount, n - 1);
+    }
+    
+    public static void reverseArray(int[] arr, int start, int end) {
+        while (start < end) {
+            int temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
+            start++;
+            end--;
+        }
+    }
+    
+    public static void main(String[] args) {
+        int[] array = {1, 2, 3, 4, 5};
+        int rotationCount = 2;
+        
+        rotateArray(array, rotationCount);
+        
+        for (int num : array) {
+            System.out.print(num + " ");
+        }
+    }
+}
